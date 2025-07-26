@@ -25,8 +25,11 @@ export default function App() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-
-      const response = await fetch("http://localhost:8082/transcribe", {
+      const isProductionEnv = import.meta.env.ENV_TYPE === "production ";
+      const apiUrl = isProductionEnv
+        ? window.location.href
+        : "http://localhost:8082/";
+      const response = await fetch(apiUrl + "transcribe", {
         method: "POST",
         body: formData,
       });

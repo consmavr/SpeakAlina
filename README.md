@@ -67,6 +67,7 @@ npm run dev
 
 ```bash
 # From root directory
+npm run build
 cp -r frontend/dist backend/static
 ```
 
