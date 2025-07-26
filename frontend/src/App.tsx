@@ -25,11 +25,7 @@ export default function App() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const isProductionEnv = import.meta.env.VITE_ENV_TYPE === "production ";
-      const apiUrl = isProductionEnv
-        ? window.location.href
-        : "http://localhost:8082/";
-      const response = await fetch(apiUrl + "transcribe", {
+      const response = await fetch("https://speakalina.onrender.com/transcribe", {
         method: "POST",
         body: formData,
       });
