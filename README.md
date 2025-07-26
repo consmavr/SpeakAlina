@@ -1,7 +1,7 @@
-# 🎧 SpeakAlina  
-_Transcribing stuff made simple_
+# 🎧 SpeakAlina
 
-This app transcribes audio files via a Python backend and a React (Vite) frontend. The backend handles transcription, while the frontend provides an interface for users to upload audio and view transcripts.
+This app allows you to upload audio or video files and get transcribed text using OpenAI's Whisper model.
+It includes a Flask backend and a React (Vite) frontend, served together as one deployable app.
 
 ---
 
@@ -61,6 +61,13 @@ uvicorn main:app --host 0.0.0.0 --port 8082
 cd frontend
 npm install
 npm run dev
+```
+
+### Integrate Frontend into Backend
+
+```bash
+# From root directory
+cp -r frontend/dist backend/static
 ```
 
 ---
