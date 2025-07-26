@@ -25,7 +25,7 @@ export default function App() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const isProductionEnv = import.meta.env.ENV_TYPE === "production ";
+      const isProductionEnv = import.meta.env.VITE_ENV_TYPE === "production ";
       const apiUrl = isProductionEnv
         ? window.location.href
         : "http://localhost:8082/";
