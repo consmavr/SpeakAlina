@@ -1,4 +1,4 @@
-from flask import Flask, Response, request, jsonify
+from flask import Flask, Response, request, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 from pathlib import Path
@@ -13,7 +13,7 @@ load_dotenv()
 api_key = os.getenv("GPT_API_KEY")
 client = OpenAI(api_key=api_key)
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", static_url_path="/")
 CORS(app)
 
 def convert_to_audio(input_file: Path, output_dir: Path):
@@ -85,10 +85,15 @@ def transcribe():
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
-
-@app.route('/')
-def hello():
-    return "Backend is up!"
+# Serve static React files
+@app.route('/', defaults={'path': 'index.html'})
+@app.route('/<path:path>')
+def serve_frontend(path):
+    static_path = Path(app.static_folder) / path
+    if static_path.exists():
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8082)
