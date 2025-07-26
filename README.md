@@ -8,7 +8,7 @@ This app transcribes audio files via a Python backend and a React (Vite) fronten
 ## 🧱 Project Structure
 
 ```
-mnemo/
+SpeakAlina/
 ├── backend/            # Python backend (Flask/FastAPI)
 ├── frontend/           # React (Vite) frontend
 ├── .env                # Environment variables for backend
